@@ -2739,9 +2739,8 @@ body._lock {
 }
 
 .right-order__checkbox input:checked + label::after {
-  -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-          transform: scale(1);
+  opacity: 1;
+  visibility: visible;
 }
 
 .right-order__checkbox label {
@@ -2783,14 +2782,11 @@ body._lock {
   background-image: url("../img/marker.svg");
   background-size: cover;
   background-repeat: no-repeat;
-  -webkit-transition: -webkit-transform 0.3s ease 0s;
-  transition: -webkit-transform 0.3s ease 0s;
-  -o-transition: transform 0.3s ease 0s;
-  transition: transform 0.3s ease 0s;
-  transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
-  -webkit-transform: scale(0);
-      -ms-transform: scale(0);
-          transform: scale(0);
+  -webkit-transition: opacity 0.3s ease 0s, visibility 0.3s ease 0s;
+  -o-transition: opacity 0.3s ease 0s, visibility 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s, visibility 0.3s ease 0s;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .right-order__btn {
