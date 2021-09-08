@@ -1662,7 +1662,7 @@ body._lock {
 .research {
   background-color: #EFF1F5;
   border-radius: 5px;
-  padding: 30px 20.5px 36px;
+  padding: 30px 20.5px 22px;
   display: block;
 }
 
@@ -1717,8 +1717,8 @@ body._lock {
   margin-bottom: 14px;
 }
 
-.research__list li:last-child {
-  margin-bottom: 0;
+.research__list li._hide {
+  display: none;
 }
 
 .research__link {
@@ -3070,7 +3070,7 @@ body._lock {
   }
 
   .research {
-    padding: 22px 32px;
+    padding: 22px 18px;
   }
 
   .research__input {
@@ -3326,6 +3326,16 @@ body._lock {
   .right-order__btn {
     margin-top: 20px;
     width: 100%;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .main {
+    padding-top: 85px;
+  }
+
+  .top-header {
+    display: none;
   }
 }
 

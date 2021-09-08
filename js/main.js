@@ -395,6 +395,27 @@ $(document).ready(function () {
       return error;
     }
   })();
+
+  (function () {
+    $('#elastic').on('input', function() {
+      let val = this.value.trim();
+      let elasticItems = document.querySelectorAll('.research__list li');
+
+      if(val != '') {
+        elasticItems.forEach(function(elem) {
+          if(elem.innerText.search(RegExp(val,"gi")) == -1) {
+            elem.classList.add('_hide');
+          } else {
+            elem.classList.remove('_hide');
+          }
+        });
+      } else {
+        elasticItems.forEach(function(elem) {
+          elem.classList.remove('_hide');
+        });
+      }
+    });
+  })();
 });
 
 ;(function (window, $, undefined) { ;(function () {
