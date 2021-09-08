@@ -1238,6 +1238,7 @@ body._lock {
 }
 
 .mobile-header__burger span {
+  border-radius: 7px;
   width: 100%;
   height: 2.5px;
   background-color: #BF271F;
