@@ -482,7 +482,7 @@ $(document).ready(function () {
 
     function scrollCard() {
       // Finish the function if width of the window is smaller than 1200
-      if ($(window).innerWidth() < 1200 || !$(".book__grid")) {
+      if ($(window).innerWidth() < 1200 || !document.querySelector('.book')) {
         return;
       }
 

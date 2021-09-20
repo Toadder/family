@@ -1648,6 +1648,10 @@ body._lock {
   padding-bottom: 12px;
 }
 
+.crumbs__list li {
+  white-space: nowrap;
+}
+
 .crumbs__list li + li::before {
   padding: 0 2.5px;
   color: black;
@@ -2886,6 +2890,10 @@ body._lock {
   margin-bottom: 34px;
 }
 
+.left-book__card:last-child {
+  margin-bottom: 0;
+}
+
 .left-book__title {
   margin-bottom: 36px;
 }
@@ -3052,11 +3060,6 @@ body._lock {
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
   white-space: nowrap;
-}
-
-.left-book__info {
-  font-size: 16px;
-  line-height: 1.2;
 }
 
 .right-book__card {
@@ -3731,10 +3734,6 @@ body._lock {
   .left-book__table-price {
     font-size: 10px;
     text-align: right;
-  }
-
-  .left-book__info {
-    font-size: 13px;
   }
 
   .right-book__card {
