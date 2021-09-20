@@ -397,24 +397,141 @@ $(document).ready(function () {
   })();
 
   (function () {
-    $('#elastic').on('input', function() {
+    $("#elastic").on("input", function () {
       let val = this.value.trim();
-      let elasticItems = document.querySelectorAll('.research__list li');
+      let elasticItems = document.querySelectorAll(".research__list li");
 
-      if(val != '') {
-        elasticItems.forEach(function(elem) {
-          if(elem.innerText.search(RegExp(val,"gi")) == -1) {
-            elem.classList.add('_hide');
+      if (val != "") {
+        elasticItems.forEach(function (elem) {
+          if (elem.innerText.search(RegExp(val, "gi")) == -1) {
+            elem.classList.add("_hide");
           } else {
-            elem.classList.remove('_hide');
+            elem.classList.remove("_hide");
           }
         });
       } else {
-        elasticItems.forEach(function(elem) {
-          elem.classList.remove('_hide');
+        elasticItems.forEach(function (elem) {
+          elem.classList.remove("_hide");
         });
       }
     });
+  })();
+
+  (function () {
+    sumServices();
+
+    $(".left-book__extension input").on("change", function () {
+      if ($(this).attr("id") == "newBook") {
+        $("._attestation").each(function () {
+          const price = $(this).next();
+          price.text(price.data("new") + " руб.");
+        });
+      } else {
+        $("._attestation").each(function () {
+          const price = $(this).next();
+          price.text(price.data("expend") + " руб.");
+        });
+      }
+      sumServices();
+    });
+
+    $("._additional-service").click(function () {
+      $(this).toggleClass("_checked");
+      sumServices();
+    });
+
+    $("._field input").on("change", function () {
+      $(".left-book__table")
+        .not(".left-book__table_additional")
+        .removeClass("_active");
+      $(`.left-book__table._${$(this).attr("id")}`).addClass("_active");
+      sumServices();
+    });
+
+    function sumServices() {
+      const mandarotyServices = document.querySelectorAll(
+        ".left-book__table._active ._mandatory-service"
+      );
+      const additionalServices = document.querySelectorAll(
+        "._additional-service._checked"
+      );
+      let sumServices = 0;
+      mandarotyServices.forEach((service) => {
+        sumServices += +service.nextElementSibling.innerHTML.split(" ")[0];
+      });
+
+      if (additionalServices.length) {
+        additionalServices.forEach((service) => {
+          sumServices += +service.nextElementSibling.innerHTML.split(" ")[0];
+        });
+      }
+
+      $(".right-book__price span").text(sumServices);
+    }
+  })();
+
+  (function () {
+    const card = $(".right-book__card");
+    const headerHeight = $(".header").outerHeight();
+
+    scrollCard();
+    $(window).on("scroll", scrollCard);
+    $(window).on('resize', function () {
+      scrollCard();
+    });
+
+    function scrollCard() {
+      // Finish the function if width of the window is smaller than 1200
+      if ($(window).innerWidth() < 1200 || !$(".book__grid")) {
+        return;
+      }
+
+      const scrollTop = $(window).scrollTop() + headerHeight;
+
+      // While we reach the card scrolling to bottom
+      if (scrollTop + card.outerHeight() * 0.1 >= $(".book__grid")) {
+        card.css({
+          position: "fixed",
+          top: headerHeight + card.outerHeight() * 0.1,
+        });
+      }
+
+      // When we've scrolled to top
+      if (scrollTop - card.outerHeight() * 0.2 < $(".book").offset().top) {
+        card.css("position", "static");
+      }
+
+      // When we scrolled to bottom of the block
+      if (
+        scrollTop + card.outerHeight() * 1.1 >
+        $(".book").offset().top +
+          $(".book").outerHeight() -
+          $(".book").css("padding-bottom").replace("px", "")
+      ) {
+        card.css({
+          position: "absolute",
+          top:
+            $(".book").offset().top +
+            $(".book").outerHeight() -
+            $(".book").css("padding-bottom").replace("px", "") -
+            card.outerHeight(),
+        });
+      }
+
+      // While we scroll from the bottom of the page to top
+      if (
+        scrollTop + card.outerHeight() * 1.1 <
+          $(".book").offset().top +
+            $(".book").outerHeight() -
+            $(".book").css("padding-bottom").replace("px", "") &&
+        scrollTop + card.outerHeight() * 0.1 >= $(".book__grid").offset().top
+      ) {
+        card.css({
+          position: "fixed",
+          top: headerHeight + card.outerHeight() * 0.1,
+        });
+      }
+    }
   })();
 });
 
